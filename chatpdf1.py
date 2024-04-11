@@ -81,7 +81,7 @@ def user_input(user_question):
     return response["output_text"]
 
 
-def main(chat):
+def main():
     st.set_page_config("Chat PDF")
     st.header("Legal Insight")
 
