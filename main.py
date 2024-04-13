@@ -18,7 +18,7 @@ os.getenv("GOOGLE_API_KEY")
 os.environ['TOGETHER_AI'] = os.getenv("TOGETHER_AI_API")
 TOGETHER_AI_API= os.environ['TOGETHER_AI']
 
-
+@st.cache_data
 def get_pdf_text(pdf_docs):
     text=""
     for pdf in pdf_docs:
@@ -99,7 +99,7 @@ def main():
     user_question1 = st.file_uploader("Upload your Input PDF files", accept_multiple_files=True)
 
     raw_text = get_pdf_text(user_question1)
-
+    
     user_question = st.chat_input("Ask a Question from the PDF Files")
     
 
