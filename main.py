@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 os.getenv("GOOGLE_API_KEY")
-os.environ['TOGETHER_AI'] = "dd8a860b96bb5483c357fa72c6f5a1a41657cfefa2c0bbe578ed616a3facdddb"
+os.environ['TOGETHER_AI'] = os.getenv("TOGETHER_AI_API")
 TOGETHER_AI_API= os.environ['TOGETHER_AI']
 
 
