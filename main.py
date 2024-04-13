@@ -3,7 +3,7 @@ from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_community.embeddings import HuggingFaceEmbeddings
+# from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_together import Together
 import google.generativeai as genai
 from langchain_community.vectorstores import FAISS
@@ -45,7 +45,7 @@ def get_vector_store(text_chunks):
 
 def get_chain():
 
-    prompt_template = """<s>[INST]This is a chat template and As a legal chat bot, your primary objective is to provide accurate and concise information based on the user's questions. Do not generate your own questions and answers. You will adhere strictly to the instructions provided, offering relevant context from the knowledge base while avoiding unnecessary details. Your responses will be brief, to the point, and in compliance with the established format. If the answer is not in provided context, you will rely on your own knowledge base to generate an appropriate response.  You will prioritize the user's query and refrain from posing additional questions. The aim is to deliver professional, precise, and contextually relevant information pertaining to the constitution of India or Indian Penal Code or Contract act of India. Try to include what all are the Indian Penal Code Sections involved in the user's question if required and only if it is related to Indian penal code.
+    prompt_template = """<s>[INST]This is a chat template and As a legal chat bot, your primary objective is to provide accurate and concise information based on the user's questions. Do not generate your own questions and answers. You will adhere strictly to the instructions provided, offering relevant context from the knowledge base while avoiding unnecessary details. Your responses will be brief, to the point, and in compliance with the established format. If the answer is not in provided context, you will rely on your own knowledge base to generate an appropriate response.  You will prioritize the user's query and refrain from posing additional questions. The aim is to deliver professional, precise, and contextually relevant information pertaining to the constitution of India or Indian Penal Code or Contract act of India. Try to include what all are the Indian Penal Code Sections involved in the user's question if required and only if it is related to Indian penal code. The answer should not contain "Based on context provided", "based on the above context", etc. No need to ask any extra questions back to the user.
     Context: {context}
     Question: {question}
     Answer:
@@ -65,8 +65,8 @@ def get_chain():
     return chain
 
 def user_input(user_question):
-    # embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
-    embeddings = HuggingFaceEmbeddings(model_name="nomic-ai/nomic-embed-text-v1",model_kwargs={"trust_remote_code":True,"revision":"289f532e14dbbbd5a04753fa58739e9ba766f3c7"})
+    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
+    # embeddings = HuggingFaceEmbeddings(model_name="nomic-ai/nomic-embed-text-v1",model_kwargs={"trust_remote_code":True,"revision":"289f532e14dbbbd5a04753fa58739e9ba766f3c7"})
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     docs = new_db.similarity_search(user_question)
 
@@ -81,6 +81,8 @@ def user_input(user_question):
     # st.write("Reply: ", response["output_text"])
     return response["output_text"]
 
+def reset_conversation():
+    st.session_state["prompt"].clear()
 
 def main():
     st.set_page_config("Chat PDF")
@@ -99,6 +101,7 @@ def main():
     raw_text = get_pdf_text(user_question1)
 
     user_question = st.chat_input("Ask a Question from the PDF Files")
+    
 
 
 
@@ -121,10 +124,10 @@ def main():
         # st.write("Reply: ", result1)
         botmsg.write(result1)
         result += result1
-        
         prompt.append({"role": "assistant", "content": result})
 
         st.session_state["prompt"] = prompt
+    st.button('Reset All Chat', on_click=reset_conversation)
 
     
 if __name__ == "__main__":
