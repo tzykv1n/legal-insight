@@ -4,7 +4,7 @@ Legal Insight is a desktop application that provides legal insights and sections
 
 ## Installation
 
-Download the latest release from the [Releases](https://github.com/Legal-Insight/lawyer/releases/tag/setup) page and run `setup.exe`. This will install the application on your system.
+Download the latest release from the [Releases](https://github.com/Legal-Insight/lawyer/releases/tag/setup_x32_1.0.1) page and run `setup.exe`. This will install the application on your system.
 
 ## Features
 - **Query Prompts**: Input your legal queries to find relevant laws and sections.
@@ -12,7 +12,7 @@ Download the latest release from the [Releases](https://github.com/Legal-Insight
 
 ## Usage
 
-1. Download the latest release from the [Releases](https://github.com/Legal-Insight/lawyer/releases/tag/setup) page.
+1. Download the latest release from the [Releases](https://github.com/Legal-Insight/lawyer/releases/tag/setup_x32_1.0.1) page.
 2. Run `setup.exe` to install the application.
 3. After installation, navigate to the `lawyer` directory and run `run.exe`.
 4. The application will open in your default web browser.
