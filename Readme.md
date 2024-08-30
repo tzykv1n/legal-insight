@@ -23,16 +23,6 @@ Download the latest release from the [Releases](https://github.com/Legal-Insight
 - It retrieves relevant laws and sections, providing concise summaries and explanations.
 - Users can trust Legal Insight to offer accurate and up-to-date legal information for their cases and situations.
 
-## Contributing
-
-We welcome contributions to Legal Insight! If you'd like to contribute, please follow these steps:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/yourfeature`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add new feature'`).
-5. Push to the branch (`git push origin feature/yourfeature`).
-6. Create a new Pull Request.
-
 ## License
 
 This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for details.
